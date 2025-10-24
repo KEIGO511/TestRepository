@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>AI Web App（実験）</title>
+    <style>
+      body { font-family: system-ui, sans-serif; padding: 20px; max-width: 720px; margin: auto; }
+      textarea { width: 100%; height: 120px; }
+      .box { margin-top: 16px; padding: 12px; border: 1px solid #ddd; border-radius: 6px; }
+    </style>
+  </head>
+  <body>
+    <h1>AI Web App 実験ページ</h1>
+
+    <form method="post" action="{{ url_for('predict') }}">
+      <label for="text">入力テキスト（テスト）</label><br>
+      <textarea id="text" name="text">{{ input_text or '' }}</textarea><br>
+      <button type="submit">送信</button>
+    </form>
+
+    {% if output_text %}
+      <div class="box">
+        <strong>AIの出力（ダミー）</strong>
+        <p>{{ output_text }}</p>
+      </div>
+    {% endif %}
+  </body>
+</html>
