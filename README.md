@@ -41,8 +41,8 @@ python -m flask run
    pip install -r requirements.txt
 
 ##重要なコミット（抜粋）
-- 初期プッシュ: a08aa49
-- app.py 更新: c9b56d1
+- 初期プッシュ: https://github.com/KEIGO511/TestRepository/commit/a08aa49
+- app.py 更新: https://github.com/KEIGO511/TestRepository/commit/c9b56d1
 - base/template・CSS 等の追加（PR マージ）: fea99b7（マージ済み）
 - （参考）PR: https://github.com/KEIGO511/TestRepository/pull/1
 - ※ コミットハッシュは git rev-parse --short <hash> で参照できます。特定コミットへのリンクは https://github.com/<ユー>/<repo>/commit/<hash> の形になります。
