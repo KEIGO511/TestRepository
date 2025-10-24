@@ -3,6 +3,7 @@ import os
 
 app = Flask(__name__)
 
+#入力テキストを逆順にする
 def predict_with_ai(text):
     return text[::-1]
 
@@ -10,9 +11,13 @@ def predict_with_ai(text):
 def index():
     return render_template('index.html')
 
+#送信ボタンを押す
 @app.route('/predict',methods=['POST'])
+
 def predict():
+    #テキストのあるなしの感知
     user_text = request.form.get('text','')
+    #テキストがあるかどうかの分岐
     if not user_text:
         return redirect(url_for('index'))
     result = predict_with_ai(user_text)
