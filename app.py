@@ -1,28 +1,15 @@
-from flask import Flask,render_template,request,redirect,url_for
-import os
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-#入力テキストを逆順にする
-def predict_with_ai(text):
-    return text[::-1]
-
-@app.route('/')
+@app.route("/", methods=["GET"])
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
 
-#送信ボタンを押す
-@app.route('/predict',methods=['POST'])
-
-def predict():
-    #テキストのあるなしの感知
-    user_text = request.form.get('text','')
-    #テキストがあるかどうかの分岐
-    if not user_text:
-        return redirect(url_for('index'))
-    result = predict_with_ai(user_text)
-    return render_template('index.html',input_text=user_text,output_text=result)
-
-if __name__=='__main__':
-    app.run(debug=True)
+# submit エンドポイントを定義（POST を受ける）
+@app.route("/submit", methods=["POST"])
+def submit():
+    text = request.form.get("text", "")
+    # ここで何か処理する（例：そのまま結果ページに渡す）
+    return render_template("result.html", text=text)
     
