@@ -1,28 +1,14 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>AI Web App（実験）</title>
-    <style>
-      body { font-family: system-ui, sans-serif; padding: 20px; max-width: 720px; margin: auto; }
-      textarea { width: 100%; height: 120px; }
-      .box { margin-top: 16px; padding: 12px; border: 1px solid #ddd; border-radius: 6px; }
-    </style>
-  </head>
-  <body>
-    <h1>AI Web App 実験ページ</h1>
+{% extends "base.html" %}
 
-    <form method="post" action="{{ url_for('predict') }}">
-      <label for="text">入力テキスト（テスト）</label><br>
-      <textarea id="text" name="text">{{ input_text or '' }}</textarea><br>
-      <button type="submit">送信</button>
-    </form>
+{% block title %}ホーム - MyApp{% endblock %}
 
-    {% if output_text %}
-      <div class="box">
-        <strong>AIの出力（ダミー）</strong>
-        <p>{{ output_text }}</p>
-      </div>
-    {% endif %}
-  </body>
-</html>
+{% block content %}
+  <h2>ようこそ</h2>
+  <p>これはサンプルのトップページです。</p>
+
+  <form action="{{ url_for('submit') }}" method="post">
+    <label for="text">テキスト</label><br>
+    <input id="text" name="text" type="text" placeholder="何か入力"><br>
+    <button type="submit">送信</button>
+  </form>
+{% endblock %}
