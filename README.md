@@ -49,4 +49,25 @@ python -m flask run
 
 ###問題点・対処
 - 一時的に __pycache__/ がリポジトリに混入しました。リポジトリ側の追跡は解除済み（.gitignore を追加）。ローカルのキャッシュは任意で削除してください (rm -rf __pycache__)。
+
+
+## 今日の作業（2025-10-27）
+本日行った主な作業:
+- 共通レイアウトを追加・整理（`templates/base.html`：ヘッダ／フッタ／block 定義）。
+- 共通ナビを部分テンプレ化（`templates/_nav.html` を追加）。
+- トップページを base から継承するように修正（`templates/index.html`）。
+- 結果表示テンプレ（`templates/result.html`）を追加し、フォーム送受信の流れを確認。
+- スタイルを `static/style.css` に追加。
+- 依存関係の固定化（`requirements.txt` を追加）。
+- `.gitignore` を更新して `__pycache__/` と `*.pyc` を無視するようにした。
+
+重要コミット（抜粋）:
+- 9aef5ef — add _nav include for base template (ローカルコミット)
+- fea99b7 — feat: add base template and basic stylesheet (PR マージ済み)
+
+動作確認手順（短縮）
+1. 仮想環境を作成・有効化:
+   ```bash
+   python -m venv venv
+   source venv/Scripts/activate   # Git Bash
    
