@@ -6,7 +6,18 @@
   <h2>ようこそ</h2>
   <p>これはサンプルのトップページです。</p>
 
+  <div style="color:red">
+    {% if form.errors %}
+    <ul>
+      {% for field, errors in form.errors.items() %}
+      <li>{{ field }}: {{ errors }}</li>
+     {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+
     <form method="post" action="{{ url_for('index') }}">
+      {{ form.csrf_token }}
     {#  {{ form.フィールド.label }}        {{ form.フィールド(引数) }} #}
         {{ form.name.label }}             {{ form.name(size=20) }}<br>
         {{ form.age.label }}              {{ form.age() }}<br>
