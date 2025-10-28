@@ -3,7 +3,12 @@
 {% block title %}結果{% endblock %}
 
 {% block content %}
-  <h2>受け取り結果</h2>
-  <p>受け取ったテキスト: {{ text }}</p>
-  <p><a href="{{ url_for('index') }}">戻る</a></p>
+   <ul>
+        <li>名前：{{form.name.data}}</li>
+        <li>年齢：{{form.age.data}}</li>
+        <li>パスワード：{{form.password.data}}</li>
+        <li>Email：{{form.email.data}}</li>
+        <li>生年月日：{{form.birthday.data}}</li>
+        <li>性別：{{form.gender.data}}</li>
+    </ul>
 {% endblock %}

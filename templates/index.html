@@ -5,19 +5,17 @@
 {% block content %}
   <h2>ようこそ</h2>
   <p>これはサンプルのトップページです。</p>
-  {% with messages = get_flashed_messages()%}
-  {%if messages%}
-  <ul class="errors">
-    {% for msg in messages%}
-    <li>{{msg}}</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-  {% endwith %}
-  
-  <form action="{{ url_for('submit') }}" method="post">
-    <label for="text">テキスト</label><br>
-    <input id="text" name="text" type="text" placeholder="何か入力"><br>
-    <button type="submit">送信</button>
-  </form>
+
+    <form method="post" action="{{ url_for('index') }}">
+    {#  {{ form.フィールド.label }}        {{ form.フィールド(引数) }} #}
+        {{ form.name.label }}             {{ form.name(size=20) }}<br>
+        {{ form.age.label }}              {{ form.age() }}<br>
+        {{ form.password.label }}         {{ form.password(size=20) }}<br>
+        {{ form.confirm_password.label }} {{ form.confirm_password(size=20) }}<br>
+        {{ form.email.label }}            {{ form.email(placeholder="xxxx@example.com" ) }}<br>
+        {{ form.birthday.label }}         {{ form.birthday() }}<br>
+        {{ form.gender.label }}           {{ form.gender() }}<br>
+        {{ form.submit() }}
+    </form>
+
 {% endblock %}
