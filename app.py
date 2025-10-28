@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for,flash
 from forms import UserInfoForm
+from flask_wtf import CSRFProtect
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = "dev-secret"   # 本番では環境変数で管理すること
+csrf = CSRFProtect(app)
 
 # submit エンドポイントを定義（POST を受ける）
 @app.route("/", methods=['GET','POST'])
