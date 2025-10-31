@@ -15,6 +15,7 @@ def index():
     form = UserInfoForm()
     app.logger.debug("Request method: %s", request.method)
     app.logger.debug("Form data: %s", request.form)
+    
     if form.validate_on_submit():
         app.logger.debug("Form validated OK. form.data: %s", form.data)
         # セッションに保存（パスワード等の敏感情報は保存しない）
@@ -22,16 +23,24 @@ def index():
             'name': form.name.data,
             'age': form.age.data,
             'email': form.email.data,
-            'birthday': form.birthday.data.isoformat() if form.birthday.data else None,
+            'birthday': form.birthday.data.isoformat() if getattr(form.birthday,"data",None) else None,
             'gender': form.gender.data
         }
         return redirect(url_for('result'))
+    
+    # POST でバリデーション失敗したらフラッシュして index を返す
     if request.method == 'POST':
         app.logger.debug("Form validation failed. errors: %s", form.errors)
         flash("フォーム送信に失敗しました。エラーを確認してください。", "danger")
+        
     # 必ず index.html を返す
     return render_template("index.html", form=form)
-    # ...existing code...
+
+@app.route("/submit", methods=['POST'])
+def submit():
+    text = request.form.get("text", "")
+    return render_template("result.html",text=text)
+
 @app.route("/result")
 def result():
     data = session.pop('form_data', None)
@@ -40,4 +49,7 @@ def result():
         return redirect(url_for('index'))
     # result.html に dict を渡す（テンプレート側でキー参照する）
     return render_template("result.html", form=data)
+
+if __name__ == "__main__":
+    app.run(debug=True)
     
